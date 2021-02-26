@@ -6,4 +6,4 @@ jobs:
       - image: cimg/base:2020.01
     steps:
       - checkout
-      - run: git log $CIRCLE_SHA1
+      - run: git log --format=%B $CIRCLE_SHA1
