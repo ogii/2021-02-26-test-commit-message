@@ -10,10 +10,38 @@ jobs:
           commit_message=$(git log -1 HEAD --pretty=format:%b)
           if ! [[ $commit_message == *"[ci build]"* ]]; then
             echo $CIRCLE_WORKFLOW_ID
-            curl --request POST \
-            --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/job/$CIRCLE_JOB/cancel \
-            --header "Circle-Token: ${CIRCLE_TOKEN}"
-            circleci step halt
+            #curl --request POST \
+            #--url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/job/$CIRCLE_JOB/cancel \
+            #--header "Circle-Token: ${CIRCLE_TOKEN}"
+            #circleci step halt
+      - run:
+          name: Cancelling the other on_hold workflow
+          command: |
+              other_on_hold_id=$(curl -G "https://circleci.com/api/v2/pipeline/<<pipeline.id>>/workflow" -H "Circle-Token: $CIRCLE_TOKEN"|jq -rs --arg CIRCLE_WORKFLOW_ID "$CIRCLE_WORKFLOW_ID" '.[].items[]|select(.status == "on_hold")|select(.id != $CIRCLE_WORKFLOW_ID)|.id')
+                    echo $other_on_hold_id
+                    curl -X POST "https://circleci.com/api/v2/workflow/${other_on_hold_id}/cancel" -H "Circle-Token: $CIRCLE_TOKEN"
           fi
           echo $commit_message
       - run: echo "1111"
+  job1:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - run: echo "1"
+  job2:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - run: echo "1"
+      
+ workflows:
+  build_ios:
+    jobs:
+      - build
+      - hold:
+          type: approval
+          requires:
+            - build
+      - job2:
+          requires:
+            - hold
