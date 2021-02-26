@@ -35,5 +35,5 @@ workflows:
            requires:
              - build
        - job2:
-           requires:
+           requires: 
              - hold
