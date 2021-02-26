@@ -13,4 +13,4 @@ jobs:
             --url https://circleci.com/api/v2/workflow/$CIRCLE_WORKFLOW_ID/cancel \
             --header "Circle-Token: ${CIRCLE_TOKEN}"
           fi
-          echo $commit_message  
+          echo $commit_message
