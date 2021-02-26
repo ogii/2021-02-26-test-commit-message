@@ -11,7 +11,7 @@ jobs:
           if ! [[ $commit_message == *"[ci build]"* ]]; then
             echo $CIRCLE_WORKFLOW_ID
             curl --request POST \
-            --url https://circleci.com/api/v2/workflow/$CIRCLE_WORKFLOW_ID/cancel \
+            --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/job/$CIRCLE_JOB/cancel \
             --header "Circle-Token: ${CIRCLE_TOKEN}"
             circleci step halt
           fi
