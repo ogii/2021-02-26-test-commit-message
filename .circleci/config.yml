@@ -10,3 +10,4 @@ jobs:
       - run: git log -1 HEAD --pretty=format:%s | grep "[ci build]"
       - run: git log -1 HEAD --grep="[ci build"]
       - run: git log -1 HEAD | grep "[dsfsdf44"]
+      - run: git log -1 HEAD --pretty=format:'%b'
