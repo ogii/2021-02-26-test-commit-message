@@ -9,3 +9,4 @@ jobs:
       #- run: git log $CIRCLE_SHA1 | grep '[ci build]'
       - run: git log -1 HEAD --pretty=format:%s | grep "[ci build]"
       - run: git log -1 HEAD | grep "[ci build"]
+      - run: git log -1 HEAD | grep "[dsfsdf44"]
