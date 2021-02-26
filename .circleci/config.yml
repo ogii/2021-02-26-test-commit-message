@@ -13,3 +13,4 @@ jobs:
           fi
           echo $commit_message 
       - run: echo 'step 2'
+      - run: echo 'step 3'
