@@ -32,13 +32,13 @@ jobs:
       - run: echo "1"
       
  workflows:
-  build_ios:
-    jobs:
-      - build
-      - hold:
-          type: approval
-          requires:
-            - build
-      - job2:
-          requires:
-            - hold
+   build_ios:
+     jobs:
+       - build
+       - hold:
+           type: approval
+           requires:
+             - build
+       - job2:
+           requires:
+             - hold
