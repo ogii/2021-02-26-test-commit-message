@@ -17,5 +17,5 @@ jobs:
       - run: | 
           commit_message=$(git log -1 HEAD --pretty=format:%s)
           if [[ $commit_message == *"[ci build]"* ]]; then
-            echo 'found
+            echo 'found'
           fi
