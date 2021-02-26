@@ -15,7 +15,7 @@ jobs:
       #- run: git show -s --format=%B $CIRCLE_SHA1
      # - run: git log -1 --pretty=%B
       - run: | 
-          commit_message=$(git log -1 HEAD --pretty=format:%s)
+          commit_message=$(git log -1 HEAD --pretty=format:%b)
           if [[ $commit_message == *"[ci build]"* ]]; then
             echo $commit_message
           fi
