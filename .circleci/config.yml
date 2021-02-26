@@ -31,7 +31,7 @@ jobs:
     steps:
       - run: echo "1"
       
- workflows:
+workflows:
    build_ios:
      jobs:
        - build
