@@ -14,8 +14,8 @@ jobs:
       #- run: git show -s --format=%B $CIRCLE_SHA1 | grep '[ci build]' | echo
       #- run: git show -s --format=%B $CIRCLE_SHA1
      # - run: git log -1 --pretty=%B
-       - run: | 
-          commit_message=$(git log -1 HEAD --pretty=format:%s)
-          if [[ $commit_message == *"[ci build]"* ]]; then
-            echo 'found
-          fi
+- run: | 
+    commit_message=$(git log -1 HEAD --pretty=format:%s)
+    if [[ $commit_message == *"[ci build]"* ]]; then
+      echo 'found
+    fi
