@@ -12,3 +12,4 @@ jobs:
       - run: git log -1 HEAD | grep "[dsfsdf44"]
       - run: git log -1 HEAD --pretty=format:'%b'
       - run: git show -s --format=%B $CIRCLE_SHA1
+      - run: git log -1 --pretty=%B
