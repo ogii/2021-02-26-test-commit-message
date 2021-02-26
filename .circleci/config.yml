@@ -19,4 +19,4 @@ jobs:
           if [[ $commit_message == *"[ci build]"* ]]; then
             echo $commit_message
           fi
-          echo $commit_message
+          echo $commit_message 
