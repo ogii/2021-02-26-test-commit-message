@@ -12,6 +12,8 @@ jobs:
             exit 1
           fi
           echo $commit_message 
-      - run: echo 'step 2'
+      - run: | 
+          echo 'export COMMIT_MESSAGE=$(git log -1 HEAD --pretty=format:%b)' >> $BASH_ENV
+      - run: echo $COMMIT_MESSAGE
       - run: echo 'step 3'
  
